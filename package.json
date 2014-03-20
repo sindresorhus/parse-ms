@@ -1,0 +1,36 @@
+{
+  "name": "parse-ms",
+  "version": "0.0.0",
+  "description": "Parse milliseconds into an object",
+  "license": "MIT",
+  "repository": "sindresorhus/parse-ms",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "browser": "a=$npm_package_name; browserify -r ./index:$a -s $a index.js -o browser.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "browser",
+    "parse",
+    "time",
+    "ms",
+    "milliseconds",
+    "duration",
+    "period",
+    "range"
+  ],
+  "devDependencies": {
+    "mocha": "*",
+    "browserify": "^3.0.0"
+  }
+}

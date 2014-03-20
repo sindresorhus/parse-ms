@@ -1,0 +1,30 @@
+{
+  "name": "parse-ms",
+  "version": "0.0.0",
+  "description": "Parse milliseconds into an object",
+  "license": "MIT",
+  "main": "browser.js",
+  "authors": [
+    {
+      "name": "Sindre Sorhus",
+      "email": "sindresorhus@gmail.com",
+      "url": "http://sindresorhus.com"
+    }
+  ],
+  "keywords": [
+    "parse",
+    "time",
+    "ms",
+    "milliseconds",
+    "duration",
+    "period",
+    "range"
+  ],
+  "ignore": [
+    ".*",
+    "component.json",
+    "package.json",
+    "test.js",
+    "index.js"
+  ]
+}

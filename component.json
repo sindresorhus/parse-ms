@@ -1,0 +1,19 @@
+{
+  "name": "parse-ms",
+  "version": "0.0.0",
+  "description": "Parse milliseconds into an object",
+  "license": "MIT",
+  "repo": "sindresorhus/parse-ms",
+  "scripts": [
+    "index.js"
+  ],
+  "keywords": [
+    "parse",
+    "time",
+    "ms",
+    "milliseconds",
+    "duration",
+    "period",
+    "range"
+  ]
+}
