@@ -5,8 +5,6 @@
 
 ## Install
 
-Download [manually](https://github.com/sindresorhus/parse-ms/releases) or with a package-manager.
-
 ```bash
 $ npm install --save parse-ms
 ```
@@ -23,13 +21,9 @@ $ component install sindresorhus/parse-ms
 ## Usage
 
 ```js
-var parseMs = require('parse-ms');
-
 parseMs(1337000001);
 //=> { days: 15, hours: 11, minutes: 23, seconds: 20, milliseconds: 1 }
 ```
-
-Can be used with require, global and AMD in the browser.
 
 
 ## License
