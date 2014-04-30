@@ -5,15 +5,15 @@
 
 ## Install
 
-```bash
+```sh
 $ npm install --save parse-ms
 ```
 
-```bash
+```sh
 $ bower install --save parse-ms
 ```
 
-```bash
+```sh
 $ component install sindresorhus/parse-ms
 ```
 
