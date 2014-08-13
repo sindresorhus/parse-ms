@@ -9,14 +9,6 @@
 $ npm install --save parse-ms
 ```
 
-```sh
-$ bower install --save parse-ms
-```
-
-```sh
-$ component install sindresorhus/parse-ms
-```
-
 
 ## Usage
 
@@ -28,4 +20,4 @@ parseMs(1337000001);
 
 ## License
 
-[MIT](http://opensource.org/licenses/MIT) © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](http://sindresorhus.com)

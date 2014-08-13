@@ -1,6 +1,6 @@
 'use strict';
 var assert = require('assert');
-var parseMs = require('./index');
+var parseMs = require('./');
 
 it('should parse milliseconds into an object', function () {
 	assert.deepEqual(parseMs(1000 + 400), {
