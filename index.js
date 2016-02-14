@@ -5,10 +5,10 @@ module.exports = function (ms) {
 	}
 
 	return {
-		days: Math.floor(ms / 86400000),
-		hours: Math.floor(ms / 3600000 % 24),
-		minutes: Math.floor(ms / 60000 % 60),
-		seconds: Math.floor(ms / 1000 % 60),
-		milliseconds: Math.floor(ms % 1000)
+		days: (ms / 86400000) | 0,
+		hours: (ms / 3600000 % 24) | 0,
+		minutes: (ms / 60000 % 60) | 0,
+		seconds: (ms / 1000 % 60) | 0,
+		milliseconds: (ms % 1000) | 0
 	};
 };
