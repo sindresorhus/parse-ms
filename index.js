@@ -3,7 +3,7 @@ module.exports = function (ms) {
 	if (typeof ms !== 'number') {
 		throw new TypeError('Expected a number');
 	}
-	
+
 	var roundTowardZero = ms > 0 ? Math.floor : Math.ceil;
 
 	return {
