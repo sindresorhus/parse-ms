@@ -67,3 +67,29 @@ it('should parse milliseconds into an object', function () {
 		milliseconds: 0
 	});
 });
+
+it('should handle negative millisecond values', function () {
+	[
+		100 + 400,
+		1000 * 55,
+		1000 * 67,
+		1000 * 60 * 5,
+		1000 * 60 * 67,
+		1000 * 60 * 60 * 12,
+		1000 * 60 * 60 * 40,
+		1000 * 60 * 60 * 999
+	].forEach(function (ms) {
+		var positive = parseMs(ms);
+		var negative = parseMs(-ms);
+		[
+			'days',
+			'hours',
+			'minutes',
+			'seconds',
+			'milliseconds'
+		].forEach(function (key) {
+			assert.equal(negative[key], -positive[key]);
+		});
+	});
+});
+

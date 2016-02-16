@@ -4,11 +4,13 @@ module.exports = function (ms) {
 		throw new TypeError('Expected a number');
 	}
 
+	var roundTowardZero = ms > 0 ? Math.floor : Math.ceil;
+
 	return {
-		days: Math.floor(ms / 86400000),
-		hours: Math.floor(ms / 3600000 % 24),
-		minutes: Math.floor(ms / 60000 % 60),
-		seconds: Math.floor(ms / 1000 % 60),
-		milliseconds: Math.floor(ms % 1000)
+		days: roundTowardZero(ms / 86400000),
+		hours: roundTowardZero(ms / 3600000) % 24,
+		minutes: roundTowardZero(ms / 60000) % 60,
+		seconds: roundTowardZero(ms / 1000) % 60,
+		milliseconds: roundTowardZero(ms) % 1000
 	};
 };
