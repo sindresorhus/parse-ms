@@ -1,6 +1,6 @@
 {
   "name": "parse-ms",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parse milliseconds into an object",
   "license": "MIT",
   "repository": "sindresorhus/parse-ms",
