@@ -1,10 +1,10 @@
-'use strict';
-module.exports = function (ms) {
+
+export default function parseMs(ms: number) {
 	if (typeof ms !== 'number') {
 		throw new TypeError('Expected a number');
 	}
 
-	var roundTowardZero = ms > 0 ? Math.floor : Math.ceil;
+	const roundTowardZero = ms > 0 ? Math.floor : Math.ceil;
 
 	return {
 		days: roundTowardZero(ms / 86400000),

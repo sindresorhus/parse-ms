@@ -13,11 +13,12 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha"
+    "pretest": "tsc",
+    "test": "mocha",
+    "prepare": "tsc"
   },
-  "files": [
-    "index.js"
-  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "keywords": [
     "browser",
     "parse",
@@ -29,6 +30,8 @@
     "range"
   ],
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "*",
+    "@types/node": "^8.0.53",
+    "typescript": "^2.6.2"
   }
 }
