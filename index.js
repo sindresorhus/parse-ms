@@ -7,7 +7,10 @@ module.exports = function (ms) {
 	var roundTowardZero = ms > 0 ? Math.floor : Math.ceil;
 
 	return {
-		days: roundTowardZero(ms / 86400000),
+		years: roundTowardZero(ms / 31557600000),
+		months: roundTowardZero(ms / 2629800000) % 12,
+		weeks: roundTowardZero(ms / 604800000) % 4.348214,
+		days: roundTowardZero(ms / 86400000) % 7,
 		hours: roundTowardZero(ms / 3600000) % 24,
 		minutes: roundTowardZero(ms / 60000) % 60,
 		seconds: roundTowardZero(ms / 1000) % 60,
