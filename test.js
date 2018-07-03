@@ -82,6 +82,26 @@ it('should parse milliseconds into an object', function () {
 		microseconds: 0,
 		nanoseconds: 0
 	});
+
+	assert.deepEqual(parseMs(1000 * 60 + 500 + 0.345678), {
+		days: 0,
+		hours: 0,
+		minutes: 1,
+		seconds: 0,
+		milliseconds: 500,
+		microseconds: 345,
+		nanoseconds: 678
+	})
+
+	assert.deepEqual(parseMs(0.000543), {
+		days: 0,
+		hours: 0,
+		minutes: 0,
+		seconds: 0,
+		milliseconds: 0,
+		microseconds: 0,
+		nanoseconds: 543
+	})
 });
 
 it('should handle negative millisecond values', function () {
