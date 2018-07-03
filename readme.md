@@ -14,7 +14,7 @@ $ npm install --save parse-ms
 
 ```js
 parseMs(1337000001);
-//=> { days: 15, hours: 11, minutes: 23, seconds: 20, milliseconds: 1 }
+//=> { days: 15, hours: 11, minutes: 23, seconds: 20, milliseconds: 1, microseconds: 0, nanoseconds: 0 }
 ```
 
 
