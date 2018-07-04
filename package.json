@@ -28,7 +28,8 @@
 		"nanoseconds",
 		"duration",
 		"period",
-		"range"
+		"range",
+		"interval"
 	],
 	"devDependencies": {
 		"ava": "*",

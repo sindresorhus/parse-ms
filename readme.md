@@ -13,6 +13,8 @@ $ npm install parse-ms
 ## Usage
 
 ```js
+const parseMs = require('parse-ms');
+
 parseMs(1337000001);
 /*
 {
@@ -30,6 +32,7 @@ parseMs(1337000001);
 
 ## Related
 
+- [to-milliseconds](https://github.com/sindresorhus/to-milliseconds) - The inverse of this module
 - [pretty-ms](https://github.com/sindresorhus/pretty-ms) - Convert milliseconds to a human readable string
 
 
