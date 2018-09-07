@@ -1,5 +1,5 @@
 'use strict';
-module.exports = ms => {
+module.exports = function (ms) {
 	if (typeof ms !== 'number') {
 		throw new TypeError('Expected a number');
 	}
