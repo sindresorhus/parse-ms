@@ -13,9 +13,9 @@ $ npm install parse-ms
 ## Usage
 
 ```js
-const parseMs = require('parse-ms');
+const parseMilliseconds = require('parse-ms');
 
-parseMs(1337000001);
+parseMilliseconds(1337000001);
 /*
 {
 	days: 15,

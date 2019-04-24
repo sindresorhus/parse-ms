@@ -1,18 +1,18 @@
 'use strict';
-module.exports = ms => {
-	if (typeof ms !== 'number') {
+module.exports = milliseconds => {
+	if (typeof milliseconds !== 'number') {
 		throw new TypeError('Expected a number');
 	}
 
-	const roundTowardsZero = ms > 0 ? Math.floor : Math.ceil;
+	const roundTowardsZero = milliseconds > 0 ? Math.floor : Math.ceil;
 
 	return {
-		days: roundTowardsZero(ms / 86400000),
-		hours: roundTowardsZero(ms / 3600000) % 24,
-		minutes: roundTowardsZero(ms / 60000) % 60,
-		seconds: roundTowardsZero(ms / 1000) % 60,
-		milliseconds: roundTowardsZero(ms) % 1000,
-		microseconds: roundTowardsZero(ms * 1000) % 1000,
-		nanoseconds: roundTowardsZero(ms * 1e6) % 1000
+		days: roundTowardsZero(milliseconds / 86400000),
+		hours: roundTowardsZero(milliseconds / 3600000) % 24,
+		minutes: roundTowardsZero(milliseconds / 60000) % 60,
+		seconds: roundTowardsZero(milliseconds / 1000) % 60,
+		milliseconds: roundTowardsZero(milliseconds) % 1000,
+		microseconds: roundTowardsZero(milliseconds * 1000) % 1000,
+		nanoseconds: roundTowardsZero(milliseconds * 1e6) % 1000
 	};
 };
