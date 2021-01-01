@@ -1,4 +1,4 @@
-# parse-ms [![Build Status](https://travis-ci.org/sindresorhus/parse-ms.svg?branch=master)](https://travis-ci.org/sindresorhus/parse-ms)
+# parse-ms
 
 > Parse milliseconds into an object
 
