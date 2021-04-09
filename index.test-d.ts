@@ -1,12 +1,12 @@
 import {expectType} from 'tsd';
-import parseMilliseconds = require('.');
+import parseMilliseconds, {TimeComponents} from './index.js';
 
-const parsed: parseMilliseconds.Parsed = parseMilliseconds(3000);
+const components: TimeComponents = parseMilliseconds(3000);
 
-expectType<number>(parsed.days);
-expectType<number>(parsed.hours);
-expectType<number>(parsed.minutes);
-expectType<number>(parsed.seconds);
-expectType<number>(parsed.milliseconds);
-expectType<number>(parsed.microseconds);
-expectType<number>(parsed.nanoseconds);
+expectType<number>(components.days);
+expectType<number>(components.hours);
+expectType<number>(components.minutes);
+expectType<number>(components.seconds);
+expectType<number>(components.milliseconds);
+expectType<number>(components.microseconds);
+expectType<number>(components.nanoseconds);

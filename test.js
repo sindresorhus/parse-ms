@@ -1,5 +1,5 @@
 import test from 'ava';
-import parseMilliseconds from '.';
+import parseMilliseconds from './index.js';
 
 test('parse milliseconds into an object', t => {
 	t.deepEqual(parseMilliseconds(1000 + 400), {
@@ -113,8 +113,8 @@ test('handle negative millisecond values', t => {
 	];
 
 	const times = [
-		0.000500,
-		0.300,
+		0.0005,
+		0.3,
 		100 + 400,
 		1000 * 55,
 		1000 * 67,
