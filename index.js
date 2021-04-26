@@ -3,15 +3,13 @@ export default function parseMilliseconds(milliseconds) {
 		throw new TypeError('Expected a number');
 	}
 
-	const roundTowardsZero = milliseconds > 0 ? Math.floor : Math.ceil;
-
 	return {
-		days: roundTowardsZero(milliseconds / 86400000),
-		hours: roundTowardsZero(milliseconds / 3600000) % 24,
-		minutes: roundTowardsZero(milliseconds / 60000) % 60,
-		seconds: roundTowardsZero(milliseconds / 1000) % 60,
-		milliseconds: roundTowardsZero(milliseconds) % 1000,
-		microseconds: roundTowardsZero(milliseconds * 1000) % 1000,
-		nanoseconds: roundTowardsZero(milliseconds * 1e6) % 1000
+		days: Math.trunc(milliseconds / 86400000),
+		hours: Math.trunc(milliseconds / 3600000) % 24,
+		minutes: Math.trunc(milliseconds / 60000) % 60,
+		seconds: Math.trunc(milliseconds / 1000) % 60,
+		milliseconds: Math.trunc(milliseconds) % 1000,
+		microseconds: Math.trunc(milliseconds * 1000) % 1000,
+		nanoseconds: Math.trunc(milliseconds * 1e6) % 1000
 	};
 }
