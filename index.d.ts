@@ -1,4 +1,9 @@
-export interface TimeComponents {
+export type TimeComponents = {
+	millennia: number;
+	centuries: number;
+	years: number;
+	months: number;
+	weeks: number;
 	days: number;
 	hours: number;
 	minutes: number;
@@ -6,7 +11,7 @@ export interface TimeComponents {
 	milliseconds: number;
 	microseconds: number;
 	nanoseconds: number;
-}
+};
 
 /**
 Parse milliseconds into an object.
@@ -26,5 +31,5 @@ parseMilliseconds(1337000001);
 // 	nanoseconds: 0
 // }
 ```
-*/
+ */
 export default function parseMilliseconds(milliseconds: number): TimeComponents;
