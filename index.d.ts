@@ -11,6 +11,7 @@ export type TimeComponents = {
 	milliseconds: number;
 	microseconds: number;
 	nanoseconds: number;
+	picoseconds: number;
 };
 
 /**
