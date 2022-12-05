@@ -1,48 +1,58 @@
 import test from 'ava';
 import parseMilliseconds from './index.mjs';
 
-test('parse milliseconds into an object', t => {
-	const zeroReference = {
-		millennia: 0,
-		centuries: 0,
-		years: 0,
-		months: 0,
-		weeks: 0,
-		days: 0,
-		hours: 0,
-		minutes: 0,
-		seconds: 0,
-		milliseconds: 0,
-		microseconds: 0,
-		nanoseconds: 0,
-	};
-	t.deepEqual(parseMilliseconds(1000 + 400), {...zeroReference, seconds: 1, milliseconds: 400});
-	t.deepEqual(parseMilliseconds(1000 * 55), {...zeroReference, seconds: 55});
-	t.deepEqual(parseMilliseconds(1000 * 67), {...zeroReference, minutes: 1, seconds: 7});
-	t.deepEqual(parseMilliseconds(1000 * 60 * 5), {...zeroReference, minutes: 5});
-	t.deepEqual(parseMilliseconds(1000 * 60 * 67), {...zeroReference, hours: 1, minutes: 7});
-	t.deepEqual(parseMilliseconds(1000 * 60 * 60 * 12), {...zeroReference, hours: 12});
-	t.deepEqual(parseMilliseconds(1000 * 60 * 60 * 40), {...zeroReference, days: 1, hours: 16});
-	t.deepEqual(parseMilliseconds(0.000_543), {...zeroReference, nanoseconds: 543});
-	t.deepEqual(parseMilliseconds(1000 * 60 * 60 * 999), {...zeroReference,
+const zeroReference = {
+	days: 0,
+	hours: 0,
+	minutes: 0,
+	seconds: 0,
+	milliseconds: 0,
+	microseconds: 0,
+	nanoseconds: 0,
+};
+const zeroFullReference = {...{
+	millennia: 0,
+	centuries: 0,
+	years: 0,
+	months: 0,
+	weeks: 0,
+},...zeroReference};
+
+function testParseMilliseconds(input, expectedOutput) {
+	test(`parseMilliseconds(${input}) -> ${JSON.stringify(expectedOutput)}`, t => {
+		t.deepEqual(parseMilliseconds(input), {...zeroReference, ...expectedOutput});
+	});
+}
+
+testParseMilliseconds(1000 + 400, {seconds: 1, milliseconds: 400});
+testParseMilliseconds(1000 * 55, {seconds: 55});
+testParseMilliseconds(1000 * 67, {minutes: 1, seconds: 7});
+testParseMilliseconds(1000 * 60 * 5, {minutes: 5});
+testParseMilliseconds(1000 * 60 * 67, {hours: 1, minutes: 7});
+testParseMilliseconds(1000 * 60 * 60 * 12, {hours: 12});
+testParseMilliseconds(1000 * 60 * 60 * 40, {days: 1, hours: 16});
+testParseMilliseconds(0.000_543, {nanoseconds: 543});
+testParseMilliseconds(1000 * 60 * 60 * 999, {days: 41,	hours: 15});
+testParseMilliseconds(500 + 0.345_678, {milliseconds: 500, microseconds: 345, nanoseconds: 678});
+testParseMilliseconds((1000 * 60) + 500 + 0.345_678, {
+	minutes: 1,
+	seconds: 0,
+	milliseconds: 500,
+	microseconds: 345,
+	nanoseconds: 678,
+});
+test('split days in bigger units if asked', t => {
+	t.deepEqual(parseMilliseconds(1000 * 60 * 60 * 999, 'millennia'), {...zeroFullReference,
 		months: 1,
 		weeks: 1,
 		days: 4,
 		hours: 4,
 		minutes: 30,
 	});
-	t.deepEqual(parseMilliseconds(500 + 0.345_678), {...zeroReference,
-		milliseconds: 500,
-		microseconds: 345,
-		nanoseconds: 678,
-	});
-	t.deepEqual(parseMilliseconds((1000 * 60) + 500 + 0.345_678), {...zeroReference,
-		minutes: 1,
-		seconds: 0,
-		milliseconds: 500,
-		microseconds: 345,
-		nanoseconds: 678,
-	});
+});
+test('throw when bad input', t => {
+	t.throws(() => parseMilliseconds('a string'));
+	t.throws(() => parseMilliseconds(42, 'unknown unit'));
 });
 
 test('handle negative millisecond values', t => {

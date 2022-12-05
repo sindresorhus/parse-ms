@@ -30,9 +30,15 @@ if (lastFactor.factor >= 1) {
 
 factors.reverse();
 
-export default function parseMilliseconds(milliseconds) {
+const factorsUnit = factors.map(f => f.unit);
+
+export default function parseMilliseconds(milliseconds, upToUnit = 'days') {
 	if (typeof milliseconds !== 'number') {
-		throw new TypeError('Expected a number');
+		throw new TypeError(`Expected a number, received : ${milliseconds}`);
+	}
+
+	if (!factorsUnit.includes(upToUnit)) {
+		throw new TypeError(`Unknow unit : ${upToUnit} (known : ${factorsUnit.join(', ')}`);
 	}
 
 	let intPower = 0;
@@ -45,7 +51,16 @@ export default function parseMilliseconds(milliseconds) {
 	}
 
 	const result = {};
+	let convertToThisUnit = false;
 	for (const u of factors) {
+		if (u.unit === upToUnit) {
+			convertToThisUnit = true;
+		}
+
+		if (!convertToThisUnit) {
+			continue;
+		}
+
 		result[u.unit] = Math.trunc(milliseconds / u.factor / (10 ** intPower));
 		if (result[u.unit]) {
 			milliseconds -= result[u.unit] * u.factor * (10 ** intPower);
