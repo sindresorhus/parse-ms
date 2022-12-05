@@ -33,6 +33,7 @@ testParseMilliseconds(1000 * 60 * 60 * 12, {hours: 12});
 testParseMilliseconds(1000 * 60 * 60 * 40, {days: 1, hours: 16});
 testParseMilliseconds(0.000_543, {nanoseconds: 543});
 testParseMilliseconds(1000 * 60 * 60 * 999, {days: 41,	hours: 15});
+testParseMilliseconds(0.4, {microseconds: 400});
 testParseMilliseconds(0.123_456_789, {microseconds: 123, nanoseconds: 457});
 testParseMilliseconds((1000 * 60) + 500 + 0.345_678, {
 	minutes: 1,

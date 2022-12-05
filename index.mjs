@@ -79,6 +79,8 @@ export default function parseMilliseconds(milliseconds, upToUnit = 'days', downT
 
 		if (u.unit === downToUnit) {
 			result[u.unit] = Math.round(milliseconds / u.factor / (10 ** intPower));
+			fixRoundCascading(result, upToUnit);
+
 			return choosNameFormat(result, outputFormat);
 		}
 
@@ -87,8 +89,6 @@ export default function parseMilliseconds(milliseconds, upToUnit = 'days', downT
 			milliseconds -= result[u.unit] * u.factor * (10 ** intPower);
 		}
 	}
-
-	return choosNameFormat(result, outputFormat);
 }
 
 function choosNameFormat(result, format = 'long') {
@@ -114,4 +114,23 @@ function convertToShort(result) {
 	}
 
 	return shortFormat;
+}
+
+function fixRoundCascading(result, upToUnit) {
+	for (let asc = factors.length - 1; asc >= 0; asc--) {
+		const a = factors[asc];
+		if (a.unit === upToUnit) {
+			break;
+		}
+
+		if (result[a.unit] < 0) {
+			if (result[a.unit] <= -a.modulo) {
+				result[a.unit] += a.modulo;
+				result[factors[asc - 1].unit]--;
+			}
+		} else if (result[a.unit] >= a.modulo) {
+			result[a.unit] -= a.modulo;
+			result[factors[asc - 1].unit]++;
+		}
+	}
 }
