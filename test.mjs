@@ -1,5 +1,5 @@
 import test from 'ava';
-import parseMilliseconds from './index.js';
+import parseMilliseconds from './index.mjs';
 
 test('parse milliseconds into an object', t => {
 	const zeroReference = {

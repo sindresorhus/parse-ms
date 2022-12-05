@@ -11,7 +11,7 @@
 		"url": "https://sindresorhus.com"
 	},
 	"type": "module",
-	"exports": "./index.js",
+	"exports": "./index.mjs",
 	"engines": {
 		"node": ">=12"
 	},
@@ -19,7 +19,7 @@
 		"test": "xo && ava && tsd"
 	},
 	"files": [
-		"index.js",
+	  "index.mjs",
 		"index.d.ts"
 	],
 	"keywords": [
