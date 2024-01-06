@@ -25,12 +25,18 @@ function parseBigint(milliseconds) {
 export default function parseMilliseconds(milliseconds) {
 	switch (typeof milliseconds) {
 		case 'number':
-			return parseNumber(milliseconds);
+			if (Number.isFinite(milliseconds)) {
+				return parseNumber(milliseconds);
+			}
+
+			break;
 		case 'bigint':
 			return parseBigint(milliseconds);
-		default:
-			throw new TypeError('Expected a number or bigint');
+
+		// No default
 	}
+
+	throw new TypeError('Expected a finite number or bigint');
 }
 
-parseMilliseconds(1n)
+parseMilliseconds(1n);

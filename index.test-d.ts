@@ -1,7 +1,7 @@
 import {expectType, expectError} from 'tsd';
 import parseMilliseconds, {TimeComponents} from './index.js';
 
-const result1:TimeComponents<number> = parseMilliseconds(3000);
+const result1: TimeComponents<number> = parseMilliseconds(3000);
 
 expectType<number>(result1.days);
 expectType<number>(result1.hours);

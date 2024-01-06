@@ -195,3 +195,9 @@ test('handle negative millisecond values', t => {
 	}
 });
 
+test('errors', t => {
+	t.throws(() => parseMilliseconds('string'));
+	t.throws(() => parseMilliseconds(Number.NaN));
+	t.throws(() => parseMilliseconds(Number.POSITIVE_INFINITY));
+});
+
