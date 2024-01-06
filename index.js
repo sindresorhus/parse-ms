@@ -1,8 +1,4 @@
-export default function parseMilliseconds(milliseconds) {
-	if (typeof milliseconds !== 'number') {
-		throw new TypeError('Expected a number');
-	}
-
+function parseNumber(milliseconds) {
 	return {
 		days: Math.trunc(milliseconds / 86400000),
 		hours: Math.trunc(milliseconds / 3600000) % 24,
@@ -13,3 +9,28 @@ export default function parseMilliseconds(milliseconds) {
 		nanoseconds: Math.trunc(milliseconds * 1e6) % 1000
 	};
 }
+
+function parseBigint(milliseconds) {
+	return {
+		days: milliseconds / 86400000n,
+		hours: milliseconds / 3600000n % 24n,
+		minutes: milliseconds / 60000n % 60n,
+		seconds: milliseconds / 1000n % 60n,
+		milliseconds: milliseconds % 1000n,
+		microseconds: 0n,
+		nanoseconds: 0n
+	};
+}
+
+export default function parseMilliseconds(milliseconds) {
+	switch (typeof milliseconds) {
+		case 'number':
+			return parseNumber(milliseconds);
+		case 'bigint':
+			return parseBigint(milliseconds);
+		default:
+			throw new TypeError('Expected a number or bigint');
+	}
+}
+
+parseMilliseconds(1n)

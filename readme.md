@@ -25,6 +25,19 @@ parseMilliseconds(1337000001);
 	nanoseconds: 0
 }
 */
+
+parseMilliseconds(1337000001n);
+/*
+{
+	days: 15n,
+	hours: 11n,
+	minutes: 23n,
+	seconds: 20n,
+	milliseconds: 1n,
+	microseconds: 0n,
+	nanoseconds: 0n
+}
+*/
 ```
 
 ## Related

@@ -1,11 +1,11 @@
-export interface TimeComponents {
-	days: number;
-	hours: number;
-	minutes: number;
-	seconds: number;
-	milliseconds: number;
-	microseconds: number;
-	nanoseconds: number;
+export interface TimeComponents<T extends number | bigint> {
+	days: T;
+	hours: T;
+	minutes: T;
+	seconds: T;
+	milliseconds: T;
+	microseconds: T;
+	nanoseconds: T;
 }
 
 /**
@@ -27,4 +27,4 @@ parseMilliseconds(1337000001);
 // }
 ```
 */
-export default function parseMilliseconds(milliseconds: number): TimeComponents;
+export default function parseMilliseconds<T extends number | bigint>(milliseconds: T): TimeComponents<T>;
