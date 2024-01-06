@@ -101,6 +101,26 @@ test('parse milliseconds into an object', t => {
 		microseconds: 0,
 		nanoseconds: 543
 	});
+
+	t.deepEqual(parseMilliseconds(Number.MAX_VALUE), {
+		days: 2.0806633505350875e+300,
+		hours: 8,
+		minutes: 8,
+		seconds: 48,
+		milliseconds: 368,
+		microseconds: 0,
+		nanoseconds: 0
+	});
+
+	t.deepEqual(parseMilliseconds(Number.MIN_VALUE), {
+		days: 0,
+		hours: 0,
+		minutes: 0,
+		seconds: 0,
+		milliseconds: 0,
+		microseconds: 0,
+		nanoseconds: 0
+	});
 });
 
 test('handle negative millisecond values', t => {
