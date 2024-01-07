@@ -1,12 +1,22 @@
 import {expectType} from 'tsd';
 import parseMilliseconds, {type TimeComponents} from './index.js';
 
-const components: TimeComponents = parseMilliseconds(3000);
+const result1: TimeComponents = parseMilliseconds(3000);
 
-expectType<number>(components.days);
-expectType<number>(components.hours);
-expectType<number>(components.minutes);
-expectType<number>(components.seconds);
-expectType<number>(components.milliseconds);
-expectType<number>(components.microseconds);
-expectType<number>(components.nanoseconds);
+expectType<number>(result1.days);
+expectType<number>(result1.hours);
+expectType<number>(result1.minutes);
+expectType<number>(result1.seconds);
+expectType<number>(result1.milliseconds);
+expectType<number>(result1.microseconds);
+expectType<number>(result1.nanoseconds);
+
+const result2: TimeComponents<bigint> = parseMilliseconds(3000n);
+
+expectType<bigint>(result2.days);
+expectType<bigint>(result2.hours);
+expectType<bigint>(result2.minutes);
+expectType<bigint>(result2.seconds);
+expectType<bigint>(result2.milliseconds);
+expectType<bigint>(result2.microseconds);
+expectType<bigint>(result2.nanoseconds);
