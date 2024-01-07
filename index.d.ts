@@ -1,4 +1,4 @@
-export interface TimeComponents {
+export type TimeComponents = {
 	days: number;
 	hours: number;
 	minutes: number;
@@ -6,7 +6,7 @@ export interface TimeComponents {
 	milliseconds: number;
 	microseconds: number;
 	nanoseconds: number;
-}
+};
 
 /**
 Parse milliseconds into an object.

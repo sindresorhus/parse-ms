@@ -13,7 +13,7 @@
 	"type": "module",
 	"exports": "./index.js",
 	"engines": {
-		"node": ">=12"
+		"node": ">=12.5"
 	},
 	"scripts": {
 		"test": "xo && ava && tsd"
@@ -38,6 +38,6 @@
 	"devDependencies": {
 		"ava": "^3.15.0",
 		"tsd": "^0.14.0",
-		"xo": "^0.38.2"
+		"xo": "^0.56.0"
 	}
 }

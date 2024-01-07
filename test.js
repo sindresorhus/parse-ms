@@ -9,7 +9,7 @@ test('parse milliseconds into an object', t => {
 		seconds: 1,
 		milliseconds: 400,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 
 	t.deepEqual(parseMilliseconds(1000 * 55), {
@@ -19,7 +19,7 @@ test('parse milliseconds into an object', t => {
 		seconds: 55,
 		milliseconds: 0,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 
 	t.deepEqual(parseMilliseconds(1000 * 67), {
@@ -29,7 +29,7 @@ test('parse milliseconds into an object', t => {
 		seconds: 7,
 		milliseconds: 0,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 
 	t.deepEqual(parseMilliseconds(1000 * 60 * 5), {
@@ -39,7 +39,7 @@ test('parse milliseconds into an object', t => {
 		seconds: 0,
 		milliseconds: 0,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 
 	t.deepEqual(parseMilliseconds(1000 * 60 * 67), {
@@ -49,7 +49,7 @@ test('parse milliseconds into an object', t => {
 		seconds: 0,
 		milliseconds: 0,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 
 	t.deepEqual(parseMilliseconds(1000 * 60 * 60 * 12), {
@@ -59,7 +59,7 @@ test('parse milliseconds into an object', t => {
 		seconds: 0,
 		milliseconds: 0,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 
 	t.deepEqual(parseMilliseconds(1000 * 60 * 60 * 40), {
@@ -69,7 +69,7 @@ test('parse milliseconds into an object', t => {
 		seconds: 0,
 		milliseconds: 0,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 
 	t.deepEqual(parseMilliseconds(1000 * 60 * 60 * 999), {
@@ -79,37 +79,37 @@ test('parse milliseconds into an object', t => {
 		seconds: 0,
 		milliseconds: 0,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 
-	t.deepEqual(parseMilliseconds((1000 * 60) + 500 + 0.345678), {
+	t.deepEqual(parseMilliseconds((1000 * 60) + 500 + 0.345_678), {
 		days: 0,
 		hours: 0,
 		minutes: 1,
 		seconds: 0,
 		milliseconds: 500,
 		microseconds: 345,
-		nanoseconds: 678
+		nanoseconds: 678,
 	});
 
-	t.deepEqual(parseMilliseconds(0.000543), {
+	t.deepEqual(parseMilliseconds(0.000_543), {
 		days: 0,
 		hours: 0,
 		minutes: 0,
 		seconds: 0,
 		milliseconds: 0,
 		microseconds: 0,
-		nanoseconds: 543
+		nanoseconds: 543,
 	});
 
 	t.deepEqual(parseMilliseconds(Number.MAX_VALUE), {
-		days: 2.0806633505350875e+300,
+		days: 2.080_663_350_535_087_5e+300,
 		hours: 8,
 		minutes: 8,
 		seconds: 48,
 		milliseconds: 368,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 
 	t.deepEqual(parseMilliseconds(Number.MIN_VALUE), {
@@ -119,7 +119,7 @@ test('parse milliseconds into an object', t => {
 		seconds: 0,
 		milliseconds: 0,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 });
 
@@ -129,7 +129,7 @@ test('handle negative millisecond values', t => {
 		'hours',
 		'minutes',
 		'seconds',
-		'milliseconds'
+		'milliseconds',
 	];
 
 	const times = [
@@ -142,7 +142,7 @@ test('handle negative millisecond values', t => {
 		1000 * 60 * 67,
 		1000 * 60 * 60 * 12,
 		1000 * 60 * 60 * 40,
-		1000 * 60 * 60 * 999
+		1000 * 60 * 60 * 999,
 	];
 
 	for (const milliseconds of times) {
