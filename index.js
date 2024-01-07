@@ -38,5 +38,3 @@ export default function parseMilliseconds(milliseconds) {
 
 	throw new TypeError('Expected a finite number or bigint');
 }
-
-parseMilliseconds(1n);
