@@ -200,4 +200,3 @@ test('errors', t => {
 	t.throws(() => parseMilliseconds(Number.NaN));
 	t.throws(() => parseMilliseconds(Number.POSITIVE_INFINITY));
 });
-
