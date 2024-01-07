@@ -16,7 +16,6 @@ const toBigInt = milliseconds => {
 @param {import('ava').Assertions} t
 @param {T} milliseconds
 @param {import('./index.js').TimeComponents<T>} expected
-@returns {void}
 */
 function runTest(t, milliseconds, expected) {
 	t.deepEqual(parseMilliseconds(milliseconds), expected);
