@@ -1,4 +1,4 @@
-export interface TimeComponents<T extends number | bigint> {
+export type TimeComponents<T extends number | bigint> = {
 	days: T;
 	hours: T;
 	minutes: T;
@@ -6,7 +6,7 @@ export interface TimeComponents<T extends number | bigint> {
 	milliseconds: T;
 	microseconds: T;
 	nanoseconds: T;
-}
+};
 
 /**
 Parse milliseconds into an object.

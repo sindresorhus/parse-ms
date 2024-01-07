@@ -29,8 +29,8 @@ function runTest(t, milliseconds, expected) {
 	t.deepEqual(
 		parseMilliseconds(bigint),
 		Object.fromEntries(
-			Object.entries(expected).map(([unit, value]) => [unit, BigInt(value)])
-		)
+			Object.entries(expected).map(([unit, value]) => [unit, BigInt(value)]),
+		),
 	);
 }
 
@@ -42,7 +42,7 @@ test('parse milliseconds into an object', t => {
 		seconds: 1,
 		milliseconds: 400,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 
 	runTest(t, 1000 * 55, {
@@ -52,7 +52,7 @@ test('parse milliseconds into an object', t => {
 		seconds: 55,
 		milliseconds: 0,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 
 	runTest(t, 1000 * 67, {
@@ -62,7 +62,7 @@ test('parse milliseconds into an object', t => {
 		seconds: 7,
 		milliseconds: 0,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 
 	runTest(t, 1000 * 60 * 5, {
@@ -72,7 +72,7 @@ test('parse milliseconds into an object', t => {
 		seconds: 0,
 		milliseconds: 0,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 
 	runTest(t, 1000 * 60 * 67, {
@@ -82,7 +82,7 @@ test('parse milliseconds into an object', t => {
 		seconds: 0,
 		milliseconds: 0,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 
 	runTest(t, 1000 * 60 * 60 * 12, {
@@ -92,7 +92,7 @@ test('parse milliseconds into an object', t => {
 		seconds: 0,
 		milliseconds: 0,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 
 	runTest(t, 1000 * 60 * 60 * 40, {
@@ -102,7 +102,7 @@ test('parse milliseconds into an object', t => {
 		seconds: 0,
 		milliseconds: 0,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 
 	runTest(t, 1000 * 60 * 60 * 999, {
@@ -112,42 +112,42 @@ test('parse milliseconds into an object', t => {
 		seconds: 0,
 		milliseconds: 0,
 		microseconds: 0,
-		nanoseconds: 0
+		nanoseconds: 0,
 	});
 
-	runTest(t, (1000 * 60) + 500 + 0.345678, {
+	runTest(t, (1000 * 60) + 500 + 0.345_678, {
 		days: 0,
 		hours: 0,
 		minutes: 1,
 		seconds: 0,
 		milliseconds: 500,
 		microseconds: 345,
-		nanoseconds: 678
+		nanoseconds: 678,
 	});
 
-	runTest(t, 0.000543, {
+	runTest(t, 0.000_543, {
 		days: 0,
 		hours: 0,
 		minutes: 0,
 		seconds: 0,
 		milliseconds: 0,
 		microseconds: 0,
-		nanoseconds: 543
+		nanoseconds: 543,
 	});
 
 	runTest(
 		t,
-		0n +
+		0n
 			// 1ms
-			1n +
+			+ 1n
 			// 2s
-			(2n * 1000n) +
+			+ (2n * 1000n)
 			// 3m
-			(3n * 1000n * 60n) +
+			+ (3n * 1000n * 60n)
 			// 4h
-			(4n * 1000n * 60n * 60n) +
+			+ (4n * 1000n * 60n * 60n)
 			// Days
-			(BigInt(Number.MAX_VALUE) * 1000n * 60n * 60n * 24n),
+			+ (BigInt(Number.MAX_VALUE) * 1000n * 60n * 60n * 24n),
 		{
 			days: BigInt(Number.MAX_VALUE),
 			hours: 4n,
@@ -155,9 +155,29 @@ test('parse milliseconds into an object', t => {
 			seconds: 2n,
 			milliseconds: 1n,
 			microseconds: 0n,
-			nanoseconds: 0n
-		}
+			nanoseconds: 0n,
+		},
 	);
+
+	t.deepEqual(parseMilliseconds(Number.MAX_VALUE), {
+		days: 2.080_663_350_535_087_5e+300,
+		hours: 8,
+		minutes: 8,
+		seconds: 48,
+		milliseconds: 368,
+		microseconds: 0,
+		nanoseconds: 0,
+	});
+
+	t.deepEqual(parseMilliseconds(Number.MIN_VALUE), {
+		days: 0,
+		hours: 0,
+		minutes: 0,
+		seconds: 0,
+		milliseconds: 0,
+		microseconds: 0,
+		nanoseconds: 0,
+	});
 });
 
 test('handle negative millisecond values', t => {
@@ -166,7 +186,7 @@ test('handle negative millisecond values', t => {
 		'hours',
 		'minutes',
 		'seconds',
-		'milliseconds'
+		'milliseconds',
 	];
 
 	const times = [
@@ -180,9 +200,9 @@ test('handle negative millisecond values', t => {
 			1000 * 60 * 67,
 			1000 * 60 * 60 * 12,
 			1000 * 60 * 60 * 40,
-			1000 * 60 * 60 * 999
+			1000 * 60 * 60 * 999,
 		].flatMap(number => [number, toBigInt(number)]),
-		BigInt('0x' + 'F'.repeat(1e6))
+		BigInt('0x' + 'F'.repeat(1e6)),
 	];
 
 	for (const milliseconds of times) {
