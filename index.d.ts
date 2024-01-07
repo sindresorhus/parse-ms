@@ -1,4 +1,4 @@
-export type TimeComponents<T extends number | bigint> = {
+export type TimeComponents<T extends (number | bigint) = number> = {
 	days: T;
 	hours: T;
 	minutes: T;
