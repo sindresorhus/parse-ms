@@ -4,8 +4,8 @@
 
 ## Install
 
-```
-$ npm install parse-ms
+```sh
+npm install parse-ms
 ```
 
 ## Usage
