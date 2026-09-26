@@ -16,9 +16,10 @@ function parseNumber(milliseconds) {
 
 	return {
 		days: Math.trunc(milliseconds / 86_400_000),
-		hours: Math.trunc(milliseconds / 3_600_000 % 24),
-		minutes: Math.trunc(milliseconds / 60_000 % 60),
-		seconds: Math.trunc(milliseconds / 1000 % 60),
+		// The sub-day parts come from a remainder, as a large quotient loses the low digits of the part to float error.
+		hours: Math.trunc(milliseconds % 86_400_000 / 3_600_000),
+		minutes: Math.trunc(milliseconds % 3_600_000 / 60_000),
+		seconds: Math.trunc(milliseconds % 60_000 / 1000),
 		milliseconds: Math.trunc(milliseconds % 1000),
 		microseconds: Math.trunc(totalNanoseconds / 1000),
 		nanoseconds: totalNanoseconds % 1000,

@@ -158,11 +158,12 @@ test('parse milliseconds into an object', t => {
 		},
 	);
 
+	// The sub-day parts are the exact remainder within the day: `BigInt(Number.MAX_VALUE) % 86_400_000n` is `80_058_368n`, so 22h 14m 18.368s.
 	t.deepEqual(parseMilliseconds(Number.MAX_VALUE), {
 		days: 2.080_663_350_535_087_5e+300,
-		hours: 8,
-		minutes: 8,
-		seconds: 48,
+		hours: 22,
+		minutes: 14,
+		seconds: 18,
 		milliseconds: 368,
 		microseconds: 0,
 		nanoseconds: 0,
@@ -263,5 +264,22 @@ test('keep the sub-millisecond parts exact', t => {
 		t.is(parsed.milliseconds, 0, `${nanoseconds}ns`);
 		t.is(parsed.microseconds, 0, `${nanoseconds}ns`);
 		t.is(parsed.nanoseconds, nanoseconds, `${nanoseconds}ns`);
+	}
+});
+
+test('keep the sub-day parts exact at any magnitude', t => {
+	// The sub-day parts came from a large quotient, which loses its low digits once the quotient is no longer an exact integer.
+	for (const milliseconds of [1e15, 1e18, 1e20, 1e21, 1e22, 1e23, Number.MAX_VALUE]) {
+		const parsed = parseMilliseconds(milliseconds);
+		const exact = BigInt(milliseconds);
+
+		t.is(parsed.seconds, Number((exact % 60_000n) / 1000n), `${milliseconds}ms seconds`);
+		t.is(parsed.minutes, Number((exact % 3_600_000n) / 60_000n), `${milliseconds}ms minutes`);
+		t.is(parsed.hours, Number((exact % 86_400_000n) / 3_600_000n), `${milliseconds}ms hours`);
+
+		const bigint = parseMilliseconds(BigInt(milliseconds));
+		t.is(parsed.seconds, Number(bigint.seconds), `${milliseconds}ms seconds against the bigint path`);
+		t.is(parsed.minutes, Number(bigint.minutes), `${milliseconds}ms minutes against the bigint path`);
+		t.is(parsed.hours, Number(bigint.hours), `${milliseconds}ms hours against the bigint path`);
 	}
 });
