@@ -227,3 +227,41 @@ test('errors', t => {
 		parseMilliseconds(Number.POSITIVE_INFINITY);
 	});
 });
+
+test('keep the sub-millisecond parts exact', t => {
+	// Scaling to nanoseconds carries up to half a ulp of error, which truncated a whole number of nanoseconds down by one.
+	runTest(t, 0.003_97, {
+		days: 0,
+		hours: 0,
+		minutes: 0,
+		seconds: 0,
+		milliseconds: 0,
+		microseconds: 3,
+		nanoseconds: 970,
+	});
+
+	runTest(t, 0.004_01, {
+		days: 0,
+		hours: 0,
+		minutes: 0,
+		seconds: 0,
+		milliseconds: 0,
+		microseconds: 4,
+		nanoseconds: 10,
+	});
+
+	// An exact integer millisecond value has no sub-millisecond part, however large.
+	for (const milliseconds of [1, 1000, 1_000_000, 9_007_199_254_740, 1_234_567_890_123, 123_456_789_012_345, 9_007_199_254_740_991, 1e15]) {
+		const parsed = parseMilliseconds(milliseconds);
+		t.is(parsed.microseconds, 0, `${milliseconds}ms`);
+		t.is(parsed.nanoseconds, 0, `${milliseconds}ms`);
+	}
+
+	// Every whole number of nanoseconds up to a millisecond lands on its exact value.
+	for (let nanoseconds = 1; nanoseconds < 1000; nanoseconds++) {
+		const parsed = parseMilliseconds(nanoseconds / 1e6);
+		t.is(parsed.milliseconds, 0, `${nanoseconds}ns`);
+		t.is(parsed.microseconds, 0, `${nanoseconds}ns`);
+		t.is(parsed.nanoseconds, nanoseconds, `${nanoseconds}ns`);
+	}
+});
