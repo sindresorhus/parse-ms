@@ -1,15 +1,16 @@
 // Scaling a value to nanoseconds carries up to half a ulp of error, which would truncate a whole number of nanoseconds down by one.
-const SCALING_EPSILON = 0.000_000_1;
+const SCALING_EPSILON = 0.0000001;
 const MAX_NANOSECONDS_IN_MILLISECOND = 999_999;
 
 function parseNumber(milliseconds) {
 	// The sub-millisecond parts come from scaling the value to nanoseconds, which recovers its intended decimal best. That scaling leaves the exact integer range above ~9e9ms, so it is reduced modulo a second there to avoid yielding phantom values for what is a whole number of milliseconds.
 	const scaledNanoseconds = (Number.isSafeInteger(Math.trunc(milliseconds) * 1e6) ? milliseconds : milliseconds % 1000) * 1e6;
 	// The nudge absorbs the scaling error, which would otherwise truncate a whole number of nanoseconds down by one. Clamping stops it from carrying into the next millisecond.
+	const nudgedNanoseconds = (scaledNanoseconds % 1e6) + (Math.sign(scaledNanoseconds) * SCALING_EPSILON);
 	const totalNanoseconds = Math.min(
 		MAX_NANOSECONDS_IN_MILLISECOND,
 		Math.max(
-			Math.trunc((scaledNanoseconds % 1e6) + (Math.sign(scaledNanoseconds) * SCALING_EPSILON)),
+			Math.trunc(nudgedNanoseconds),
 			-MAX_NANOSECONDS_IN_MILLISECOND,
 		),
 	);

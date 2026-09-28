@@ -1,22 +1,22 @@
-import {expectType} from 'tsd';
+import {expectTypeOf} from 'nz';
 import parseMilliseconds, {type TimeComponents} from './index.js';
 
 const result1: TimeComponents = parseMilliseconds(3000);
 
-expectType<number>(result1.days);
-expectType<number>(result1.hours);
-expectType<number>(result1.minutes);
-expectType<number>(result1.seconds);
-expectType<number>(result1.milliseconds);
-expectType<number>(result1.microseconds);
-expectType<number>(result1.nanoseconds);
+expectTypeOf(result1.days).toBe<number>();
+expectTypeOf(result1.hours).toBe<number>();
+expectTypeOf(result1.minutes).toBe<number>();
+expectTypeOf(result1.seconds).toBe<number>();
+expectTypeOf(result1.milliseconds).toBe<number>();
+expectTypeOf(result1.microseconds).toBe<number>();
+expectTypeOf(result1.nanoseconds).toBe<number>();
 
 const result2: TimeComponents<bigint> = parseMilliseconds(3000n);
 
-expectType<bigint>(result2.days);
-expectType<bigint>(result2.hours);
-expectType<bigint>(result2.minutes);
-expectType<bigint>(result2.seconds);
-expectType<bigint>(result2.milliseconds);
-expectType<bigint>(result2.microseconds);
-expectType<bigint>(result2.nanoseconds);
+expectTypeOf(result2.days).toBe<bigint>();
+expectTypeOf(result2.hours).toBe<bigint>();
+expectTypeOf(result2.minutes).toBe<bigint>();
+expectTypeOf(result2.seconds).toBe<bigint>();
+expectTypeOf(result2.milliseconds).toBe<bigint>();
+expectTypeOf(result2.microseconds).toBe<bigint>();
+expectTypeOf(result2.nanoseconds).toBe<bigint>();
